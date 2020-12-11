@@ -1,0 +1,22 @@
+{
+  "name": "car_dealer_case",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evelinadanielsson/car_dealer_case.git"
+  },
+  "author": "Evelina Danielsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evelinadanielsson/car_dealer_case/issues"
+  },
+  "homepage": "https://github.com/evelinadanielsson/car_dealer_case#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
