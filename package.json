@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/evelinadanielsson/car_dealer_case#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
