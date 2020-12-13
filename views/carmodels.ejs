@@ -4,27 +4,27 @@
     <button class="btn btn-primary">Add carmodel</button>
 </div>
 <br>
+
+
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Column heading</th>
-        <th scope="col">Column heading</th>
-        <th scope="col">Column heading</th>
+        <th scope="col">ID</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Model</th>
+        <th scope="col">Price</th>
       </tr>
     </thead>
+    
     <tbody>
-      <tr class="table-active">
-        <th scope="row">Active</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">Default</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
+        <% car.forEach(function(c){%>
+            <tr>
+                <td><%= c.id %></td>
+                <td><%= c.brand %></td>
+                <td><%= c.model %></td>
+                <td><%= c.price %></td>
+            </tr>
+        <%})%>    
+
     </tbody>
   </table>

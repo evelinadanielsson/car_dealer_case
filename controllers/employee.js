@@ -2,7 +2,9 @@ const Employee = require('../models').employees;
 
 module.exports = {
     getEmployees(req, res) {
-        return Employee.findAll()
+        return Employee.findAll({
+            raw: true
+        })
         .then(employee => {
             //console.log(employee);
             return employee;
