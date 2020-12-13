@@ -8,15 +8,18 @@ router.get('/api', (req, res) => res.status(200).send({
         message: 'Welcome to the API!',
     }));
 
-router.post('/api/employee', employeeController.create);
+// router.post('/api/employee', employeeController.create);
 
 // Carmodels page
 router.get('/carmodels', ensureAuthenticated, (req, res) => res.render('carmodels', { layout: 'layout-nav',
     email: req.user.email }));
 
 // Employees page
-router.get('/employees', ensureAuthenticated, (req, res) => res.render('employees', { layout: 'layout-nav',
-    email: req.user.email }));
+router.get('/employees', ensureAuthenticated, async (req, res) => {
+    const emp = await employeeController.getEmployees(res, req);
+    console.log(emp);
+    res.render('employees', { layout: 'layout-nav', emp: emp });
+});
 
 // Total sales page
 router.get('/total_sales', ensureAuthenticated, (req, res) => 

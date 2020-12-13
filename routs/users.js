@@ -27,6 +27,15 @@ router.post('/register', (req, res) => {
     // res.send('hello');
 });
 
+router.post('/connect-employee', (req, res) => {
+
+    console.log("here")
+    // const {email, password, password2 } = req.body;
+    user.setEmployeeId(req, res);
+    //res.redirect('/users/login');
+    // res.send('hello');
+});
+
 // Login handle
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {

@@ -3,8 +3,9 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     create(req, res) {
+        const by = req.body;
+        console.log(by)
         var {email, password, password2} = req.body;
-
 
         password = bcrypt.hashSync(password, 10);
 
@@ -14,15 +15,24 @@ module.exports = {
             password: password,
         })
         .then(user => res.status(201).redirect('/users/login'))
-        .catch(error => res.status(400).send(error))
+        .catch(error => res.status(400).send(error));
     },
 
     setEmployeeId(req, res) {
-        await User.update({ employee_id: req.body.employee_id }, {
+        const email = req.body.email;
+        const employee_id = req.body.employee_id;
+        const by = req.body;
+        console.log(by)
+        console.log(email);
+        console.log(employee_id);
+        User
+        .update({ employee_id: employee_id}, {
             where: {
-              email: req.body.email
+                email: email
             }
-          });
+        })
+        .then(user => res.status(201).redirect('/dashboard'))
+        .catch(error => res.status(400).send(error));
     },
 };
 
