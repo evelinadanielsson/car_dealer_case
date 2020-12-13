@@ -1,25 +1,65 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const mysql = require('mysql');
+const passport = require('passport');
+const session = require('express-session');
+// const mysql = require('mysql');
+// const bodyParser = require('body-parser');
 
 const app = express();
 
-// db config
-var db = require('./config/database');
-var connection = mysql.createConnection(db.connection);
+// Passport config
+require('./config/passport')(passport)
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('mySQL connected!');
+// Bodyparser
+app.use(express.urlencoded({ extended: false }));
+
+// Express session
+app.use(session({
+    secret: 'secrets',
+    resave: true,
+    saveUninitialized: true
+  }))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false}));
+
+// Models
+var models = require('./models');
+
+// Sync database
+models.sequelize.sync().then(function() {
+    console.log('Nice! Database looks fine.');
+}).catch(function(err) {
+    console.log(err, "Something went wrong with database update.")
 });
 
-// EJS
+//require('./routs')(app);
+
+// app.get('*', (req, res) => res.status(200).send({
+//     message: "Welcome to the carshop!"
+// }));
+
+//module.exports = app;
+
+// // db config
+// var db = require('./config/database');
+// var connection = mysql.createConnection(db.connection);
+
+// connection.connect((err) => {
+//     if (err) throw err;
+//     console.log('mySQL connected!');
+// });
+
+// // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'))
 
-// Routs
+// // Routs
 app.use('/', require('./routs/index'));
 app.use('/users', require('./routs/users'));
 

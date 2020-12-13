@@ -34,6 +34,16 @@ connection.query('\
   )');
 
 
+  connection.query('\
+  CREATE TABLE `' + dbconfig.database + '`.`users` ( \
+    `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT, \
+    `email` VARCHAR(255) NOT NULL, \
+    `password` VARCHAR(255) NOT NULL, \
+    `employee_id` INT, \
+    FOREIGN KEY (employee_id) REFERENCES employees (id) \
+  )');
+
+
 
 console.log('Success! Database created.');
 connection.end();
