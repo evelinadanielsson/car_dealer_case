@@ -18,11 +18,12 @@ router.get('/login', (req, resp) => resp.render('login'));
 // Register page
 router.get('/register', (req, res) => res.render('register'));
 
+
+
 router.post('/register', (req, res) => {
-    console.log(req.body);
     // const {email, password, password2 } = req.body;
     user.create(req, res);
-    res.redirect('/users/login');
+    //res.redirect('/users/login');
     // res.send('hello');
 });
 

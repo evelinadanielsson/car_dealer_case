@@ -14,7 +14,7 @@ module.exports = function(passport) {
         new LocalStrategy({ usernameField: 'email'}, (email, password, done) => {
             // Match user
             
-            User.findOne({ email: email })
+            User.findOne({ where: { email: email } })
             .then(user => {
                 if (!user) {
                     return done(null, false, { message: 'Email is not registered'});
@@ -38,10 +38,13 @@ module.exports = function(passport) {
         done(null, user.id);
       });
       
-    passport.deserializeUser((id, done) => {
-        User.findByPk(id, (err, user) => {
-            done(err, user);
+      passport.deserializeUser(function(id, done) {
+        User.findByPk(id).then(function(user) {
+            if (user) {
+                done(null, user.get());
+            } else {
+                done(user.errors, null);
+            }
         });
     });
-
 }

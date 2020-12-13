@@ -13,8 +13,16 @@ module.exports = {
             email: email,
             password: password,
         })
-        .then(user => res.redirect('/users/login'))
+        .then(user => res.status(201).redirect('/users/login'))
         .catch(error => res.status(400).send(error))
+    },
+
+    setEmployeeId(req, res) {
+        await User.update({ employee_id: req.body.employee_id }, {
+            where: {
+              email: req.body.email
+            }
+          });
     },
 };
 
