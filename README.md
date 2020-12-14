@@ -16,5 +16,5 @@
 6. `npm start dev` to start up your app! Go to [http://localhost:5000](http://localhost:5000) to see it.
 
 
-## Error handeling
+## Error handling
 If you are using MySQL 8, make sure you can run MySQL 8 with Native Password Authentication.
